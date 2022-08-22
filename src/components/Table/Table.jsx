@@ -68,46 +68,50 @@ export function Table() {
     }
 
     return (
-        <form onSubmit={handleEditFormSubmit} >
-            <table style={{ width: '100%' }} data-testid='pokemon-table'>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Imagen</th>
-                        <th>Ataque</th>
-                        <th>Defensa</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {list?.filter(pokemon => {
-                        return fieldsFilter?.some((key => String(pokemon[key]).toLowerCase().includes(query)))
-                    }).map(pokemon => {
-                        return (<tr key={pokemon.id} className='table-pokemon-title'>
-                            {editPokemonId !== pokemon.id ? (
-                                <>
-                                    <td onClick={handlePokemonModal.bind(pokemon)}>
-                                        <span>{pokemon.name}</span></td>
-                                    <td onClick={handlePokemonModal.bind(pokemon)}><img src={pokemon.image} alt={pokemon.name} className="pokemon-image" />  </td>
-                                    <td onClick={handlePokemonModal.bind(pokemon)}>{pokemon.attack}</td>
-                                    <td onClick={handlePokemonModal.bind(pokemon)}>{pokemon.defense}</td>
-                                    <td><AiFillEdit onClick={e => handleEditClick(e, pokemon)} /> <AiFillDelete onClick={handleDeleteClick.bind(pokemon)} /></td>
-                                </>
-                            ) : (<EditableRow
-                                editFormData={editFormData}
-                                handleEditFormChange={handleEditFormChange}
-                                handleCancelClick={handleCancelClick} />
-                            )}
-                        </tr>)
-                    })}
-                </tbody>
+        <>
+            {!list && <div>Loading...</div>}
 
-            </table>
-            <PokemonModal isOpen={isOpen}
-                onRequestClose={handlePokemonModal}
-                pokemon={pokemon}
-            />
-        </form>
+            {list && <form onSubmit={handleEditFormSubmit} >
+                <table style={{ width: '100%' }} data-testid='pokemon-table'>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Imagen</th>
+                            <th>Ataque</th>
+                            <th>Defensa</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {list?.filter(pokemon => {
+                            return fieldsFilter?.some((key => String(pokemon[key]).toLowerCase().includes(query)))
+                        }).map(pokemon => {
+                            return (<tr key={pokemon.id} className='table-pokemon-title'>
+                                {editPokemonId !== pokemon.id ? (
+                                    <>
+                                        <td onClick={handlePokemonModal.bind(pokemon)}>
+                                            <span>{pokemon.name}</span></td>
+                                        <td onClick={handlePokemonModal.bind(pokemon)}><img src={pokemon.image} alt={pokemon.name} className="pokemon-image" />  </td>
+                                        <td onClick={handlePokemonModal.bind(pokemon)}>{pokemon.attack}</td>
+                                        <td onClick={handlePokemonModal.bind(pokemon)}>{pokemon.defense}</td>
+                                        <td><AiFillEdit onClick={e => handleEditClick(e, pokemon)} /> <AiFillDelete onClick={handleDeleteClick.bind(pokemon)} /></td>
+                                    </>
+                                ) : (<EditableRow
+                                    editFormData={editFormData}
+                                    handleEditFormChange={handleEditFormChange}
+                                    handleCancelClick={handleCancelClick} />
+                                )}
+                            </tr>)
+                        })}
+                    </tbody>
+
+                </table>
+                <PokemonModal isOpen={isOpen}
+                    onRequestClose={handlePokemonModal}
+                    pokemon={pokemon}
+                />
+            </form>}
+        </>
     )
 }
 
