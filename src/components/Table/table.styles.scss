@@ -55,3 +55,16 @@ th[scope="col"] {
 th[scope="row"] {
     background-color: #d7d9f2;
 }
+
+.table-pokemon-title {
+    // background-color: red;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+
+        background-color: #d7d9f2;
+    }
+
+
+}

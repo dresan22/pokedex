@@ -1,11 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai'
 import EditableRow from "../Rows/EditableRow";
 import useApi from "../../utils/api";
 import usePokemons from "../../store/context";
 import './table.styles.scss'
+import PokemonModal from "../Modals/PokemonModal";
 
 export function Table() {
+    const [isOpen, setIsOpen] = useState(false);
+    const [pokemon, setPokemon] = useState();
+
     const fieldsFilter = ['name', 'type', 'attack', 'defense']
     const { fetchPokemon, deletePokemon, editPokemon } = useApi()
     const { query, list, setList, editFormData, setEditFormData, editPokemonId, setEditPokemonId } = usePokemons()
@@ -56,6 +60,13 @@ export function Table() {
         setEditPokemonId(null);
     }
 
+    function handlePokemonModal() {
+        setPokemon(this)
+        setIsOpen(!isOpen);
+
+
+    }
+
     return (
         <form onSubmit={handleEditFormSubmit} >
             <table style={{ width: '100%' }} data-testid='pokemon-table'>
@@ -72,10 +83,11 @@ export function Table() {
                     {list?.filter(pokemon => {
                         return fieldsFilter?.some((key => String(pokemon[key]).toLowerCase().includes(query)))
                     }).map(pokemon => {
-                        return (<tr key={pokemon.id}>
+                        return (<tr key={pokemon.id} onClick={handlePokemonModal.bind(pokemon)} className='table-pokemon-title'>
                             {editPokemonId !== pokemon.id ? (
                                 <>
-                                    <td>{pokemon.name}</td>
+                                    <td >
+                                        <span>{pokemon.name}</span></td>
                                     <td><img src={pokemon.image} alt={pokemon.name} className="pokemon-image" />  </td>
                                     <td>{pokemon.attack}</td>
                                     <td>{pokemon.defense}</td>
@@ -91,6 +103,10 @@ export function Table() {
                 </tbody>
 
             </table>
+            <PokemonModal isOpen={isOpen}
+                onRequestClose={handlePokemonModal}
+                pokemon={pokemon}
+            />
         </form>
     )
 }

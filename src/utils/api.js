@@ -1,11 +1,10 @@
 import axios from 'axios';
 import usePokemons from '../store/context';
-const API_URL = 'https://bp-pokemons.herokuapp.com/?idAuthor=10'
+import { API_URL, IMAGE_URL, AUTHOR_ID } from '../utils/constants';
+
 axios.defaults.baseURL = API_URL;
 
-
 const useApi = () => {
-    const imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
     const { setList, editFormData, editPokemonId } = usePokemons();
     const randomNumber = Math.floor(Math.random() * Math.floor(400))
 
@@ -25,7 +24,7 @@ const useApi = () => {
             ...editFormData,
             hp: 200,
             type: 'normal',
-            idAuthor: 10,
+            idAuthor: AUTHOR_ID,
         })
         if (response) {
             const { data } = await fetchPokemon()
@@ -36,12 +35,12 @@ const useApi = () => {
     const postPokemon = async (values) => {
         const response = await axios.post(`https://bp-pokemons.herokuapp.com/`, {
             name: values.name,
-            image: values.image || (imageUrl + randomNumber + '.png'),
+            image: values.image || (IMAGE_URL + randomNumber + '.png'),
             attack: values.attack,
             defense: values.defense,
             hp: values.hp,
             type: values.type,
-            idAuthor: 10,
+            idAuthor: AUTHOR_ID,
         })
         if (response) {
             const { data } = await fetchPokemon()

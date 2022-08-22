@@ -47,7 +47,7 @@ const NewModal = ({ isOpen, onRequestClose }) => {
     }
 
     return (
-        <Modal isOpen={isOpen} onRequestClose={onRequestClose} className='modal' ariaHideApp={false}>
+        <Modal isOpen={isOpen} onRequestClose={onRequestClose} className='modal' ariaHideApp={false} overlayClassName="Overlay">
             <div >
                 <div className="modal-card">
                     <header className="modal-card-head">

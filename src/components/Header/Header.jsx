@@ -11,10 +11,14 @@ export default function Header() {
     const toggleModal = () => {
         setIsOpen(!isOpen);
     }
+
+    const handleChange = (e) => {
+        setQuery(e.target.value.toLowerCase())
+    }
     return <div>
         <span className='title'>Listado de Pokemon</span>
         <div className='toolbar'>
-            <input type="text" className='input-text' placeholder='🔍  Pokemon' data-testid="search-input" onChange={e => setQuery(e.target.value)} />
+            <input type="text" className='input-text' placeholder='🔍  Pokemon' data-testid="search-input" onChange={handleChange} />
             <Button icon={<AiOutlinePlus />} onPress={toggleModal}>Nuevo</Button>
         </div>
 
