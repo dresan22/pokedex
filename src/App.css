@@ -1,0 +1,79 @@
+:root {
+    --primary-color: #6658f6;
+    --primary-light: #bebaec;
+    --primary-dark: #5d56b7;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--primary-light);
+    display: flex;
+    justify-content: center;
+    font-size: 17px;
+}
+
+
+.App {
+    /* width: 100%; */
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+    border-radius: 6px;
+    /* border: 1px solid rgb(0, 0, 0, 0.2); */
+    /* height: 100vh; */
+    background: #fff;
+    width: 50vw;
+    padding: 20px;
+    /* text-align: center; */
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 16px 0px;
+}
+
+.title {
+    margin: 12px 0;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px 0;
+}
+
+.input-text {
+    box-shadow: inset #abacaf 0 0 0 2px;
+    border: 0;
+    background: rgba(0, 0, 0, 0);
+    appearance: none;
+    width: 50%;
+    position: relative;
+    border-radius: 3px;
+    padding: 9px 12px;
+    /* line-height: 1.4; */
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    font-weight: 400;
+    /* height: 40px; */
+    transition: all .2s ease;
+}
+
+.input:hover {
+    box-shadow: 0 0 0 0 #fff inset, var(--primary-color) 0 0 0 2px;
+}
+
+input:focus-visible {
+    outline: 2px solid var(--primary-color)
+}
+
+
+
+
+
+.input:focus {
+    background: #fff;
+    outline: 0;
+    box-shadow: 0 0 0 0 #fff inset, var(--primary-dark) 0 0 0 3px;
+}

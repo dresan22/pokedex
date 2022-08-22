@@ -1,0 +1,93 @@
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        header {
+            margin: 12px
+        }
+
+        .field {
+            display: flex;
+            align-items: center;
+        }
+
+
+        .modal-card {
+            padding: 10px 20px;
+            width: 100%;
+            max-width: 900px;
+            background: #fff;
+            border-radius: 3px;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            margin: 12px 0;
+
+            .form {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 10px;
+
+                label {
+                    display: inline-block;
+                    width: 100px;
+                }
+            }
+        }
+
+        .modal-card-foot {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+
+
+    }
+
+    input.input-error,
+    select.input-error {
+        border-color: #fc8181;
+    }
+
+    .error {
+        color: #fc8181;
+        font-size: .75rem;
+        text-align: left;
+        margin: 0.55rem;
+
+    }
+
+    button:disabled {
+        opacity: 0.34
+    }
+
+    .disable_section {
+        pointer-events: none;
+        opacity: 0.4;
+    }
+
+    .save-edit {
+        background-color: inherit;
+        width: 100%;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .save-edit:hover {
+        background-color: inherit;
+        width: 100%;
+    }
